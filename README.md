@@ -1,5 +1,24 @@
 # dependency-diff
 
+```java
+
+		JarContents version1 = JarContents.load(VERSION_0_0_1_FILE);
+		JarContents version2 = JarContents.load(VERSION_0_0_2_FILE);
+
+		Differences differences = version1.difference(version2);
+		
+		assertThat(differences).additionalClassesAre(
+				"com.test.package1.ClassF", 
+				"com.test.package2.ClassE", 
+				"com.test.package3.ClassG", 
+				"com.test.package3.ClassH");
+		
+		assertThat(differences).removedClassesAre(
+				"com.test.package1.ClassG", 
+				"com.test.package2.ClassD"); 
+
+```
+
 
 ##TODO
  - Classes

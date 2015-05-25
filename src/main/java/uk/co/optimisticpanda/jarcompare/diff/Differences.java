@@ -11,6 +11,10 @@ public class Differences {
 	private Differences(ClassDifferences classDifference){
 		this.classDifference = classDifference;
 	}
+
+	public ClassDifferences getClassDifference(){
+		return classDifference;
+	}
 	
 	@Override
 	public String toString() {

@@ -24,4 +24,20 @@ public class ClassDifferences {
 		removals.forEach(a -> builder.append("\t\t* " + a + "\n"));
 		return builder.toString();
 	}
+
+	public boolean hasAddition(String name) {
+		return additions.contains(name);
+	}
+	
+	public boolean hasRemoval(String name) {
+		return removals.contains(name);
+	}
+
+	public int getAdditionSize() {
+		return additions.size();
+	}
+	
+	public int getRemovalSize() {
+		return removals.size();
+	}
 }
