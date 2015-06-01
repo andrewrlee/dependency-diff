@@ -24,7 +24,8 @@
  - Classes
    - [X] New Classes
    - [X] Deleted Classes
-   - [ ] Altered Classes (Child members altered or class modifiers changed)  
+   - [ ] Class Modifier changed.
+   - [ ] Child members changed.  
 
  - Nested Classes
    - [ ] New Classes

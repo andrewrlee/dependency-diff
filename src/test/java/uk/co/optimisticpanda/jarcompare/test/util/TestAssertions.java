@@ -1,4 +1,4 @@
-package uk.co.optimisticpanda.jarcompare.util;
+package uk.co.optimisticpanda.jarcompare.test.util;
 
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.api.Assertions;

@@ -1,5 +1,9 @@
 package com.test.package1;
 
-public class ClassB {
+public final class ClassB {
 
+	public static class ClassB2{
+		
+	}
+	
 }

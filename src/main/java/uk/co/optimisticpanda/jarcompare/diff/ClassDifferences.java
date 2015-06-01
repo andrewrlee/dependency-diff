@@ -1,19 +1,29 @@
 package uk.co.optimisticpanda.jarcompare.diff;
 
 import java.util.Set;
+import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import uk.co.optimisticpanda.jarcompare.ClassFile;
+
+import com.google.common.collect.Sets;
 
 public class ClassDifferences {
 
 	private SortedSet<String> additions = new TreeSet<>();
 	private SortedSet<String> removals = new TreeSet<>();
+	private ModifierDifferences modifierDifferences;
 
-	public ClassDifferences(Set<String> additions, Set<String> removals) {
-		this.additions.addAll(additions);
-		this.removals.addAll(removals);
+	public ClassDifferences(SortedMap<String, ClassFile> contents, SortedMap<String, ClassFile> otherContents) {
+		Set<String> removed = Sets.difference(contents.keySet(), otherContents.keySet());
+		Set<String> added = Sets.difference(otherContents.keySet(), contents.keySet());
+		
+		this.additions.addAll(added);
+		this.removals.addAll(removed);
+		this.modifierDifferences = new ModifierDifferences(contents, otherContents);
 	}
-
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -22,6 +32,7 @@ public class ClassDifferences {
 		additions.forEach(a -> builder.append("\t\t* " + a + "\n"));
 		builder.append("\tRemovals:\n");
 		removals.forEach(a -> builder.append("\t\t* " + a + "\n"));
+		builder.append(modifierDifferences);
 		return builder.toString();
 	}
 

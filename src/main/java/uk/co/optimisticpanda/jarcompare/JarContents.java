@@ -1,7 +1,6 @@
 package uk.co.optimisticpanda.jarcompare;
 
 import java.io.File;
-import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.stream.Stream;
@@ -9,8 +8,6 @@ import java.util.stream.Stream;
 import uk.co.optimisticpanda.jarcompare.diff.ClassDifferences;
 import uk.co.optimisticpanda.jarcompare.diff.Differences;
 import uk.co.optimisticpanda.jarcompare.util.JarReader;
-
-import com.google.common.collect.Sets;
 
 public class JarContents {
 
@@ -32,11 +29,8 @@ public class JarContents {
 	}
 	
 	public Differences difference(JarContents other){
-		Set<String> removed = Sets.difference(contents.keySet(), other.contents.keySet());
-		Set<String> added = Sets.difference(other.contents.keySet(), contents.keySet());
-		
 		return Differences.build()
-					.add(new ClassDifferences(added, removed))
+					.add(new ClassDifferences(contents, other.contents))
 					.create();
 	}
 	

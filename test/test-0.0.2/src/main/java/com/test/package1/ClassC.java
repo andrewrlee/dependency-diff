@@ -1,6 +1,6 @@
 package com.test.package1;
 
-public class ClassC {
+public final class ClassC {
 
 	public interface InterfaceC{
 		

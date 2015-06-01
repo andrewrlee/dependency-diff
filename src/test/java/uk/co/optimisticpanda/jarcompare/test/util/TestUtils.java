@@ -1,4 +1,4 @@
-package uk.co.optimisticpanda.jarcompare.util;
+package uk.co.optimisticpanda.jarcompare.test.util;
 
 import java.io.File;
 

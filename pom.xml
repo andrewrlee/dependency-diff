@@ -42,6 +42,11 @@
 			<version>3.0.0</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.reactivex</groupId>
+			<artifactId>rxjava</artifactId>
+			<version>1.0.11</version>
+		</dependency>
 	</dependencies>
 </project>
   
