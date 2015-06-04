@@ -13,28 +13,27 @@ public class JarContents {
 
 	private final SortedMap<String, ClassFile> contents = new TreeMap<>();
 
-	public static JarContents load(File file){
+	public static JarContents load(File file) {
 		JarContents contents = new JarContents();
-		JarReader.entriesOf(file)
-					.stream(s -> s.map(ClassFile::new).forEach(contents::add));
+		JarReader.classes(file).forEach(contents::add);
 		return contents;
 	}
-	
-	private JarContents(){}
-	
-	private void add(ClassFile file){
-		if(!file.getName().contains("$")){
+
+	private JarContents() {
+	}
+
+	private void add(ClassFile file) {
+		if (!file.getName().contains("$")) {
 			contents.put(file.getName(), file);
 		}
 	}
-	
-	public Differences difference(JarContents other){
+
+	public Differences difference(JarContents other) {
 		return Differences.build()
-					.add(new ClassDifferences(contents, other.contents))
-					.create();
+				.add(new ClassDifferences(contents, other.contents)).create();
 	}
-	
-	public Stream<ClassFile> stream(){
+
+	public Stream<ClassFile> stream() {
 		return contents.values().stream();
 	}
 }

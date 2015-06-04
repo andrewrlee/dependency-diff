@@ -1,5 +1,5 @@
 package com.test.package1;
 
-public class ClassF {
+public final class ClassF {
 
 }

@@ -9,6 +9,7 @@ import java.util.function.ToLongFunction;
 
 import org.junit.Test;
 
+import rx.Observable;
 import uk.co.optimisticpanda.jarcompare.diff.Differences;
 import uk.co.optimisticpanda.jarcompare.util.JarReader;
 
@@ -16,20 +17,6 @@ public class JarContentsTest {
 
 	private static final File VERSION_0_0_1_FILE = getFile("test-0.0.1-SNAPSHOT.jar");
 	private static final File VERSION_0_0_2_FILE = getFile("test-0.0.2-SNAPSHOT.jar");
-	private static final ToLongFunction<ClassFile> countOfDescendentsAndThis = cf -> 1L + cf
-			.getNestedClassesAndDescendentsSize();
-
-	@Test
-	public void checkNumberOfClassesIsSameAsNumberOfCollectedClassesWithNestedClasses() {
-
-		Long totalClassCount = JarReader.<Long> entriesOf(VERSION_0_0_1_FILE)
-				.map(s -> s.count());
-
-		Long collectedClassCount = JarContents.load(VERSION_0_0_1_FILE)
-				.stream().mapToLong(countOfDescendentsAndThis).sum();
-
-		assertThat(totalClassCount).isEqualTo(collectedClassCount);
-	}
 
 	@Test
 	public void checkClassAdditions() throws IOException {
@@ -50,11 +37,11 @@ public class JarContentsTest {
 	@Test
 	public void checkModifierDifferences() throws IOException {
 
-		// JarContents version1 = JarContents.load(VERSION_0_0_1_FILE);
+		JarContents version1 = JarContents.load(VERSION_0_0_1_FILE);
 		JarContents version2 = JarContents.load(VERSION_0_0_2_FILE);
 
-		// Differences differences = version1.difference(version2);
+		 Differences differences = version1.difference(version2);
 
-		// System.out.println(differences);
+		 System.out.println(differences);
 	}
 }

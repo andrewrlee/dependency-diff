@@ -1,5 +1,7 @@
 package uk.co.optimisticpanda.jarcompare.diff;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
@@ -11,10 +13,10 @@ import com.google.common.collect.Sets;
 
 public class ClassDifferences {
 
-	private SortedSet<String> additions = new TreeSet<>();
-	private SortedSet<String> removals = new TreeSet<>();
-	private ModifierDifferences modifierDifferences;
-
+	private final SortedSet<String> additions = new TreeSet<>();
+	private final SortedSet<String> removals = new TreeSet<>();
+	private final ModifierDifferences modifierDifferences;
+	
 	public ClassDifferences(SortedMap<String, ClassFile> contents, SortedMap<String, ClassFile> otherContents) {
 		Set<String> removed = Sets.difference(contents.keySet(), otherContents.keySet());
 		Set<String> added = Sets.difference(otherContents.keySet(), contents.keySet());

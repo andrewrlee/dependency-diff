@@ -1,9 +1,24 @@
 package uk.co.optimisticpanda.jarcompare;
 
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.ABSTRACT;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.ANNOTATION;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.ENUM;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.FINAL;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.INTERFACE;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.NATIVE;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.PACKAGE;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.PRIVATE;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.PROTECTED;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.PUBLIC;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.STATIC;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.STRICT;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.SYNCHRONIZED;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.TRANSIENT;
+import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.VOLATILE;
+
 import java.util.Collection;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.function.BiConsumer;
 import java.util.function.IntPredicate;
 
 import javassist.Modifier;
@@ -16,31 +31,34 @@ public class ModifierUtils {
 
 	public static SortedSet<Mod> getModifiers(int modifier) {
 		TreeSet<Mod> results = new TreeSet<>();
-		BiConsumer<IntPredicate, Mod> adder = createAdder(results, modifier);
+		Gatherer gatherer = createGatherer(results, modifier);
 
-		adder.accept(Modifier::isPublic, Mod.PUBLIC);
-		adder.accept(Modifier::isPrivate, Mod.PRIVATE);
-		adder.accept(Modifier::isProtected, Mod.PROTECTED);
-		adder.accept(Modifier::isPackage, Mod.PACKAGE);
-		adder.accept(Modifier::isStatic, Mod.STATIC);
-		adder.accept(Modifier::isFinal, Mod.FINAL);
-		adder.accept(Modifier::isSynchronized, Mod.SYNCHRONIZED);
-		adder.accept(Modifier::isVolatile, Mod.VOLATILE);
-		adder.accept(Modifier::isTransient, Mod.TRANSIENT);
-		adder.accept(Modifier::isNative, Mod.NATIVE);
-		adder.accept(Modifier::isInterface, Mod.INTERFACE);
-		adder.accept(Modifier::isAnnotation, Mod.ANNOTATION);
-		adder.accept(Modifier::isEnum, Mod.ENUM);
-		adder.accept(Modifier::isAbstract, Mod.ABSTRACT);
-		adder.accept(Modifier::isStrict, Mod.STRICT);
+		gatherer.addIf(Modifier::isPublic, PUBLIC);
+		gatherer.addIf(Modifier::isPrivate, PRIVATE);
+		gatherer.addIf(Modifier::isProtected, PROTECTED);
+		gatherer.addIf(Modifier::isPackage, PACKAGE);
+		gatherer.addIf(Modifier::isStatic, STATIC);
+		gatherer.addIf(Modifier::isFinal, FINAL);
+		gatherer.addIf(Modifier::isSynchronized, SYNCHRONIZED);
+		gatherer.addIf(Modifier::isVolatile, VOLATILE);
+		gatherer.addIf(Modifier::isTransient, TRANSIENT);
+		gatherer.addIf(Modifier::isNative, NATIVE);
+		gatherer.addIf(Modifier::isInterface, INTERFACE);
+		gatherer.addIf(Modifier::isAnnotation, ANNOTATION);
+		gatherer.addIf(Modifier::isEnum, ENUM);
+		gatherer.addIf(Modifier::isAbstract, ABSTRACT);
+		gatherer.addIf(Modifier::isStrict, STRICT);
 		return results;
 	}
 
-	private static BiConsumer<IntPredicate, Mod> createAdder(Collection<Mod> result, int mod) {
-		return (IntPredicate predicate, Mod modifier) -> {
+	private static Gatherer createGatherer(Collection<Mod> result, int mod) {
+		return (predicate, modifier) -> {
 			if (predicate.test(mod)) {
 				result.add(modifier);
 			}
 		};
+	}
+	private interface Gatherer {
+		void addIf(IntPredicate predicate, Mod modifier);
 	}
 }
