@@ -8,10 +8,12 @@ import java.util.stream.Stream;
 import uk.co.optimisticpanda.jarcompare.diff.ClassDifferences;
 import uk.co.optimisticpanda.jarcompare.diff.Differences;
 import uk.co.optimisticpanda.jarcompare.util.JarReader;
+import uk.co.optimisticpanda.jarcompare.util.Path;
+import static uk.co.optimisticpanda.jarcompare.util.Path.*;
 
 public class JarContents {
 
-	private final SortedMap<String, ClassFile> contents = new TreeMap<>();
+	private final SortedMap<Path, ClassFile> contents = new TreeMap<>();
 
 	public static JarContents load(File file) {
 		JarContents contents = new JarContents();
@@ -23,9 +25,7 @@ public class JarContents {
 	}
 
 	private void add(ClassFile file) {
-		if (!file.getName().contains("$")) {
-			contents.put(file.getName(), file);
-		}
+		contents.put(newPath(file.getName()), file);
 	}
 
 	public Differences difference(JarContents other) {

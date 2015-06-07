@@ -1,20 +1,20 @@
-package uk.co.optimisticpanda.jarcompare;
+package uk.co.optimisticpanda.jarcompare.util;
 
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.ABSTRACT;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.ANNOTATION;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.ENUM;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.FINAL;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.INTERFACE;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.NATIVE;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.PACKAGE;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.PRIVATE;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.PROTECTED;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.PUBLIC;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.STATIC;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.STRICT;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.SYNCHRONIZED;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.TRANSIENT;
-import static uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod.VOLATILE;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.ABSTRACT;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.ANNOTATION;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.ENUM;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.FINAL;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.INTERFACE;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.NATIVE;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PACKAGE;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PRIVATE;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PROTECTED;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PUBLIC;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.STATIC;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.STRICT;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.SYNCHRONIZED;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.TRANSIENT;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.VOLATILE;
 
 import java.util.Collection;
 import java.util.SortedSet;

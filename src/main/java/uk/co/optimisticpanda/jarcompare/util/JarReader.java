@@ -100,7 +100,6 @@ public enum JarReader {
 					.collect(toList());
 
 			return classes.stream()
-					.filter(entry -> !entry.getName().contains("$"))
 					.map(ClassFile::new).collect(toList());
 		};
 	}

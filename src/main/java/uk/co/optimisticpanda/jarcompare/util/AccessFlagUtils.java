@@ -1,6 +1,6 @@
-package uk.co.optimisticpanda.jarcompare;
+package uk.co.optimisticpanda.jarcompare.util;
 
-import static uk.co.optimisticpanda.jarcompare.AccessFlagUtils.Flag.*;
+import static uk.co.optimisticpanda.jarcompare.util.AccessFlagUtils.Flag.*;
 
 import java.util.Collection;
 import java.util.SortedSet;

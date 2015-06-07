@@ -60,3 +60,31 @@
  -  [ ] Altered Resources
  -  [ ] Detect moved members.           
  -  [ ] maven pom dependencies?
+
+ 
+ ##Test cases
+ 
+ - Class 
+  - New class  (NewClass)
+  - Removed class (RemovedClass)
+  - Moved class (MovedClass)
+  - new nested class (ClassWithNewNestedClass)
+  - new nested nested class (ClassWithNewNestedNestedClass)
+  - multiple nested clases at same level  (ClassWithAdditionalNestedClassesAtSameLevel)
+  - single class to class with multiple nested classes (ClassWithTwoLevelsOfNestingAdded)
+  - class with multiple nested classes to single class (ClassWithTwoLevelsOfNestingRemoved)
+  - removed nested class (RemovedNestedClass)
+  - removed nested nested class (RemovedNestedNestedClass)
+
+ - Class Modifiers
+  - Top level single class changes
+  - Top level class and nested class changes
+  - Top level class, nested class, nested nested class changes.
+  - Nested class changes and top is marked as changed.
+  - Nested Nested class changes and top and nested is marked as changed. 
+ 
+ - class to interface / interface to class
+ - class to enum / enum to class
+  
+ 
+ 

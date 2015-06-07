@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import javassist.CtClass;
 import javassist.NotFoundException;
-import uk.co.optimisticpanda.jarcompare.AccessFlagUtils.Flag;
-import uk.co.optimisticpanda.jarcompare.ModifierUtils.Mod;
+import uk.co.optimisticpanda.jarcompare.util.ModifierUtils;
+import uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod;
 
 import com.google.common.base.Throwables;
 
@@ -19,16 +19,8 @@ public class ClassFile {
 	private List<ClassFile> children;
 
 	public ClassFile(CtClass file) {
-		
 		this.name = file.getName();
 		this.modifiers = ModifierUtils.getModifiers(file.getModifiers());
-
-		if (name.contains("ClassF")) {
-			SortedSet<Flag> flags = AccessFlagUtils.getFlags(file
-					.getClassFile().getAccessFlags());
-			System.out.println(file.getClassPool().hashCode() + "\t" + name + ": " + modifiers);
-		}
-
 		try {
 			this.children = Arrays.stream(file.getNestedClasses())
 					.map(ClassFile::new).collect(Collectors.toList());
