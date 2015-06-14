@@ -1,6 +1,6 @@
 package uk.co.optimisticpanda.jarcompare;
 
-import static uk.co.optimisticpanda.jarcompare.test.util.TestAssertions.assertThat;
+import static uk.co.optimisticpanda.jarcompare.test.util.TestAssertions.check;
 import static uk.co.optimisticpanda.jarcompare.test.util.TestUtils.differenceBetween;
 import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.FINAL;
 import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PACKAGE;
@@ -19,10 +19,10 @@ public class ClassModifierDifferencesTest {
 	Differences differences = differenceBetween("test-0.0.1-SNAPSHOT.jar").and("test-0.0.2-SNAPSHOT.jar");
 
 	@Test
-	public void checkModifierDifferences() throws IOException {
+	public void checkClassModifierChanges() throws IOException {
 		
 		
-		assertThat(differences)
+		check(differences)
 			
 			.classModifiersFor("com.test.classModifiers1.ModifierChangeClass")
 				.were(PUBLIC, FINAL).now(PUBLIC).end()

@@ -1,14 +1,10 @@
 # dependency-diff
 
 ```java
-
-	Differences differences = differenceBetween("test-0.0.1-SNAPSHOT.jar").and("test-0.0.2-SNAPSHOT.jar");
-
-	@Test
-	public void checkModifierDifferences() throws IOException {
-		
-		
-		assertThat(differences)
+    @Test
+	public void checkClassModifierChanges() throws IOException {
+	
+		check(differences)
 			
 			.classModifiersFor("com.test.classModifiers1.ModifierChangeClass")
 				.were(PUBLIC, FINAL).now(PUBLIC).end()
@@ -19,7 +15,6 @@
 					.were(PUBLIC).now(PACKAGE, STATIC, FINAL).end()
 				.end();
 	}
-
 
 ```
 

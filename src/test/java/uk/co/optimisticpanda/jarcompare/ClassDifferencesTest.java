@@ -1,6 +1,6 @@
 package uk.co.optimisticpanda.jarcompare;
 
-import static uk.co.optimisticpanda.jarcompare.test.util.TestAssertions.assertThat;
+import static uk.co.optimisticpanda.jarcompare.test.util.TestAssertions.check;
 import static uk.co.optimisticpanda.jarcompare.test.util.TestUtils.differenceBetween;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class ClassDifferencesTest {
 
 	@Test
 	public void checkClassAdditions() throws IOException {
-		assertThat(differences)
+		check(differences)
 				.additionalClassesAre(
 						"com.test.class1.NewClass",
 						"com.test.class2.MovedClass",
@@ -30,7 +30,7 @@ public class ClassDifferencesTest {
 
 	@Test
 	public void checkClassRemovals() throws IOException {
-		assertThat(differences)
+		check(differences)
 				.removedClassesAre(
 						"com.test.class1.MovedClass",
 						"com.test.class1.RemovedClass",

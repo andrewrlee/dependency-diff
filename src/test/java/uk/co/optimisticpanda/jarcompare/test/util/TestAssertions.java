@@ -13,7 +13,7 @@ import uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod;
 
 public class TestAssertions extends Assertions {
 
-	public static DifferencesAssert assertThat(Differences actual) {
+	public static DifferencesAssert check(Differences actual) {
 		return new DifferencesAssert(actual);
 	}
 
