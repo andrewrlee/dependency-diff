@@ -14,9 +14,8 @@
 						"com.test.class1.ClassWithAdditionalNestedClassesAtSameLevel$NewNestedClassB",
 						"com.test.class1.ClassWithNewNestedNestedClass$NewNestedClass$NewNestedNestedClass",
 						"com.test.class1.ClassWithTwoLevelsOfNestingAdded$NewNestedClass",
-						"com.test.class1.ClassWithTwoLevelsOfNestingAdded$NewNestedClass$NewNestedNestedClass");
+						"com.test.class1.ClassWithTwoLevelsOfNestingAdded$NewNestedClass$NewNestedNestedClass")
 
-		check(differences)
 				.removedClassesAre(
 						"com.test.class1.MovedClass",
 						"com.test.class1.RemovedClass",
