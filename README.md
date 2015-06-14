@@ -1,5 +1,34 @@
 # dependency-diff
 
+###Added/Removed Classes:
+
+```java
+	@Test
+	public void checkClassChanges() {
+		check(differences)
+				.additionalClassesAre(
+						"com.test.class1.NewClass",
+						"com.test.class2.MovedClass",
+						"com.test.class1.ClassWithNewNestedClass$NewNestedClass",
+						"com.test.class1.ClassWithAdditionalNestedClassesAtSameLevel$NewNestedClassA",
+						"com.test.class1.ClassWithAdditionalNestedClassesAtSameLevel$NewNestedClassB",
+						"com.test.class1.ClassWithNewNestedNestedClass$NewNestedClass$NewNestedNestedClass",
+						"com.test.class1.ClassWithTwoLevelsOfNestingAdded$NewNestedClass",
+						"com.test.class1.ClassWithTwoLevelsOfNestingAdded$NewNestedClass$NewNestedNestedClass");
+
+		check(differences)
+				.removedClassesAre(
+						"com.test.class1.MovedClass",
+						"com.test.class1.RemovedClass",
+						"com.test.class1.RemovedNestedClass$NewNestedClass",
+						"com.test.class1.RemovedNestedNestedClass$NewNestedClass$NewNestedNestedClass",
+						"com.test.class1.ClassWithTwoLevelsOfNestingRemoved$NewNestedClass",
+						"com.test.class1.ClassWithTwoLevelsOfNestingRemoved$NewNestedClass$NewNestedNestedClass");
+	}
+```
+
+###Class Modifiers:
+
 ```java
     @Test
 	public void checkClassModifierChanges() throws IOException {

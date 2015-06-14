@@ -3,8 +3,6 @@ package uk.co.optimisticpanda.jarcompare;
 import static uk.co.optimisticpanda.jarcompare.test.util.TestAssertions.check;
 import static uk.co.optimisticpanda.jarcompare.test.util.TestUtils.differenceBetween;
 
-import java.io.IOException;
-
 import org.junit.Test;
 
 import uk.co.optimisticpanda.jarcompare.diff.Differences;
@@ -15,7 +13,7 @@ public class ClassDifferencesTest {
 	Differences differences = differenceBetween("test-0.0.1-SNAPSHOT.jar").and("test-0.0.2-SNAPSHOT.jar");
 
 	@Test
-	public void checkClassAdditions() throws IOException {
+	public void checkClassAdditions() {
 		check(differences)
 				.additionalClassesAre(
 						"com.test.class1.NewClass",
@@ -29,7 +27,7 @@ public class ClassDifferencesTest {
 	}
 
 	@Test
-	public void checkClassRemovals() throws IOException {
+	public void checkClassRemovals() {
 		check(differences)
 				.removedClassesAre(
 						"com.test.class1.MovedClass",
@@ -39,4 +37,5 @@ public class ClassDifferencesTest {
 						"com.test.class1.ClassWithTwoLevelsOfNestingRemoved$NewNestedClass",
 						"com.test.class1.ClassWithTwoLevelsOfNestingRemoved$NewNestedClass$NewNestedNestedClass");
 	}
+
 }
