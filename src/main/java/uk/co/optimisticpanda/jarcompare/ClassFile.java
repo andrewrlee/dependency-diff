@@ -1,9 +1,10 @@
 package uk.co.optimisticpanda.jarcompare;
 
-import java.util.Arrays;
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
 import java.util.SortedSet;
-import java.util.stream.Collectors;
 
 import javassist.CtClass;
 import javassist.NotFoundException;
@@ -22,8 +23,7 @@ public class ClassFile {
 		this.name = file.getName();
 		this.modifiers = ModifierUtils.getModifiers(file.getModifiers());
 		try {
-			this.children = Arrays.stream(file.getNestedClasses())
-					.map(ClassFile::new).collect(Collectors.toList());
+			this.children = stream(file.getNestedClasses()).map(ClassFile::new).collect(toList());
 		} catch (NotFoundException e) {
 			throw Throwables.propagate(e);
 		}

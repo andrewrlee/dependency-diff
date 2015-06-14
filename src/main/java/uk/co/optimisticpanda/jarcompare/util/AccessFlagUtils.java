@@ -1,13 +1,15 @@
 package uk.co.optimisticpanda.jarcompare.util;
 
-import static uk.co.optimisticpanda.jarcompare.util.AccessFlagUtils.Flag.*;
+import static uk.co.optimisticpanda.jarcompare.util.AccessFlagUtils.Flag.PACKAGE;
+import static uk.co.optimisticpanda.jarcompare.util.AccessFlagUtils.Flag.PRIVATE;
+import static uk.co.optimisticpanda.jarcompare.util.AccessFlagUtils.Flag.PROTECTED;
+import static uk.co.optimisticpanda.jarcompare.util.AccessFlagUtils.Flag.PUBLIC;
 
 import java.util.Collection;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.function.IntPredicate;
 
-import javassist.Modifier;
 import javassist.bytecode.AccessFlag;
 
 public class AccessFlagUtils {

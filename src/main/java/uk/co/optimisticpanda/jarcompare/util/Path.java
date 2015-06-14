@@ -4,23 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 
 public class Path implements Comparable<Path>{
 
 	private List<String> segments = new ArrayList<>();
+	private boolean highLevelClass;
 	
-	private Path() {
+	private Path(boolean highLevelClass) {
+		this.highLevelClass = highLevelClass;
 	}
 
 	public static Path newPath(String segment){
-		return new Path().addAll(Splitter.on("$").splitToList(segment));
-	}
-	
-	public Path add(String segment){
-		segments.add(segment);
-		return this;
+		boolean highLevelClass = !segment.contains("$");
+		return new Path(highLevelClass).addAll(Splitter.on("$").splitToList(segment));
 	}
 	
 	public Path addAll(List<String> segs){
@@ -30,6 +29,10 @@ public class Path implements Comparable<Path>{
 	
 	public boolean notEmpty(){
 		return !segments.isEmpty();
+	}
+	
+	public boolean isHighLevelClass(){
+		return highLevelClass;
 	}
 	
 	public List<String> get(){
@@ -54,7 +57,7 @@ public class Path implements Comparable<Path>{
 	
 	@Override
 	public String toString() {
-		return segments.stream().reduce("", (a, b) -> a + " -> " + b);
+		return Joiner.on(" -> ").join(segments);
 	}
 
 	@Override

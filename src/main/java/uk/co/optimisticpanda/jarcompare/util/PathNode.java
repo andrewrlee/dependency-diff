@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.function.Function;
 
 import com.google.common.base.Joiner;
@@ -40,11 +39,9 @@ public class PathNode {
 		Map<String, List<List<String>>> nodes = paths.stream().collect(
 				groupingBy(Path::first, mapping(Path::rest, toList())));
 
-		List<PathNode> result = new ArrayList<>();
-		for (Entry<String, List<List<String>>> entry : nodes.entrySet()) {
-			result.add(new PathNode(entry.getKey(), entry.getValue()));
-		}
-		return result;
+		return nodes.entrySet().stream()
+				.map(entry -> new PathNode(entry.getKey(), entry.getValue()))
+				.collect(toList());
 	}
 
 	public String toString() {

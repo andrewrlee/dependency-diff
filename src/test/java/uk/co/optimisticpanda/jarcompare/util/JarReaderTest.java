@@ -25,7 +25,7 @@ public class JarReaderTest {
 				.flatMap(Observable::from).countLong().toBlocking().single();
 
 		Long collectedClassCount = JarContents.load(VERSION_0_0_1_FILE)
-				.stream().mapToLong(countOfDescendentsAndThis).sum();
+				.stream().filter(c -> !c.getName().contains("$")).mapToLong(countOfDescendentsAndThis).sum();
 
 		assertThat(totalClassCount).isEqualTo(collectedClassCount);
 	}

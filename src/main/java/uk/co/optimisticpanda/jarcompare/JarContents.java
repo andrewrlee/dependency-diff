@@ -6,6 +6,7 @@ import java.util.TreeMap;
 import java.util.stream.Stream;
 
 import uk.co.optimisticpanda.jarcompare.diff.ClassDifferences;
+import uk.co.optimisticpanda.jarcompare.diff.ClassModifierDifferences;
 import uk.co.optimisticpanda.jarcompare.diff.Differences;
 import uk.co.optimisticpanda.jarcompare.util.JarReader;
 import uk.co.optimisticpanda.jarcompare.util.Path;
@@ -30,7 +31,9 @@ public class JarContents {
 
 	public Differences difference(JarContents other) {
 		return Differences.build()
-				.add(new ClassDifferences(contents, other.contents)).create();
+				.add(new ClassDifferences(contents, other.contents))
+				.add(new ClassModifierDifferences(contents, other.contents))
+				.create();
 	}
 
 	public Stream<ClassFile> stream() {

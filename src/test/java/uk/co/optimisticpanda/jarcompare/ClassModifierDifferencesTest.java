@@ -2,6 +2,10 @@ package uk.co.optimisticpanda.jarcompare;
 
 import static uk.co.optimisticpanda.jarcompare.test.util.TestAssertions.assertThat;
 import static uk.co.optimisticpanda.jarcompare.test.util.TestUtils.differenceBetween;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.FINAL;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PACKAGE;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PUBLIC;
+import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.STATIC;
 
 import java.io.IOException;
 
@@ -16,6 +20,17 @@ public class ClassModifierDifferencesTest {
 
 	@Test
 	public void checkModifierDifferences() throws IOException {
-		System.out.println(differences);
+		
+		
+		assertThat(differences)
+			
+			.classModifiersFor("com.test.classModifiers1.ModifierChangeClass")
+				.were(PUBLIC, FINAL).now(PUBLIC).end()
+			
+			.classModifiersFor("com.test.classModifiers1.ModifierAndSubclassChangeClass")
+				.were(PUBLIC).now(PUBLIC, FINAL)
+				.subClassModifiersFor("com.test.classModifiers1.ModifierAndSubclassChangeClass$ModifierAndSubclassChangeSubClass")
+					.were(PUBLIC).now(PACKAGE, STATIC, FINAL).end()
+				.end();
 	}
 }

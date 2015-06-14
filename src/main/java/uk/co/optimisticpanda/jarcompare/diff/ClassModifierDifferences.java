@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static java.util.stream.IntStream.rangeClosed;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,9 +15,9 @@ import java.util.TreeSet;
 import java.util.function.Function;
 
 import uk.co.optimisticpanda.jarcompare.ClassFile;
+import uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod;
 import uk.co.optimisticpanda.jarcompare.util.Pair;
 import uk.co.optimisticpanda.jarcompare.util.Path;
-import uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod;
 
 public class ClassModifierDifferences {
 
@@ -25,10 +26,16 @@ public class ClassModifierDifferences {
 	public ClassModifierDifferences(SortedMap<Path, ClassFile> contents,
 			SortedMap<Path, ClassFile> otherContents) {
 		this.differences = new TreeSet<>(otherContents.keySet().stream()
-				.filter(contents::containsKey)
+				.filter(contents::containsKey).filter(Path::isHighLevelClass)
 				.map(key -> ModifierDiff.create(key, contents, otherContents))
 				.filter(Optional::isPresent).map(Optional::get)
 				.collect(toSet()));
+	}
+
+	public Optional<ModifierDiff> getDifference(String key) {
+		Path path = Path.newPath(key);
+		return differences.stream().filter(diff -> diff.key.equals(path))
+				.findFirst();
 	}
 
 	@Override
@@ -84,10 +91,12 @@ public class ClassModifierDifferences {
 						.orElse(null);
 			};
 
-			return beforeClasses.stream().map(matchingClass)
+			return beforeClasses
+					.stream()
+					.map(matchingClass)
 					.filter(p -> p != null)
-					.map(pair -> new ModifierDiff(pair.getLeft(), pair.getRight()))
-					.collect(toList());
+					.map(pair -> new ModifierDiff(pair.getLeft(), pair
+							.getRight())).collect(toList());
 		}
 
 		private boolean isDifferent() {
@@ -137,12 +146,31 @@ public class ClassModifierDifferences {
 
 		public String toString(int level) {
 			StringBuilder builder = new StringBuilder();
-			String tabs = rangeClosed(0, level).mapToObj(i -> "\t").reduce("",
-					String::concat);
+			String tabs = rangeClosed(0, level)
+					.mapToObj(i -> "\t")
+					.reduce("", String::concat);
 			builder.append(tabs + key + ":\t" + before + " -> " + after + "\n");
 			children.stream().forEach(
 					child -> builder.append(child.toString(level + 1)));
 			return builder.toString();
 		}
+
+		public Optional<ModifierDiff> getSubClassDifference(String subclassName) {
+				Path path = Path.newPath(subclassName);
+				return children.stream().filter(diff -> diff.key.equals(path))
+						.findFirst();
+		}
+		
+		public boolean previouslyHad(Mod... mods) {
+				return before.size() == mods.length 
+						&& before.containsAll(Arrays.asList(mods)); 
+		}
+
+		public boolean nowHas(Mod... mods) {
+			return after.size() == mods.length 
+					&& after.containsAll(Arrays.asList(mods)); 
+
+		}
+
 	}
 }

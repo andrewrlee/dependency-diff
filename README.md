@@ -2,20 +2,24 @@
 
 ```java
 
-		JarContents version1 = JarContents.load(VERSION_0_0_1_FILE);
-		JarContents version2 = JarContents.load(VERSION_0_0_2_FILE);
+	Differences differences = differenceBetween("test-0.0.1-SNAPSHOT.jar").and("test-0.0.2-SNAPSHOT.jar");
 
-		Differences differences = version1.difference(version2);
+	@Test
+	public void checkModifierDifferences() throws IOException {
 		
-		assertThat(differences).additionalClassesAre(
-				"com.test.package1.ClassF", 
-				"com.test.package2.ClassE", 
-				"com.test.package3.ClassG", 
-				"com.test.package3.ClassH");
 		
-		assertThat(differences).removedClassesAre(
-				"com.test.package1.ClassG", 
-				"com.test.package2.ClassD"); 
+		assertThat(differences)
+			
+			.classModifiersFor("com.test.classModifiers1.ModifierChangeClass")
+				.were(PUBLIC, FINAL).now(PUBLIC).end()
+			
+			.classModifiersFor("com.test.classModifiers1.ModifierAndSubclassChangeClass")
+				.were(PUBLIC).now(PUBLIC, FINAL)
+				.subClassModifiersFor("com.test.classModifiers1.ModifierAndSubclassChangeClass$ModifierAndSubclassChangeSubClass")
+					.were(PUBLIC).now(PACKAGE, STATIC, FINAL).end()
+				.end();
+	}
+
 
 ```
 
@@ -77,8 +81,8 @@
   - removed nested nested class (RemovedNestedNestedClass)
 
  - Class Modifiers
-  - Top level single class changes
-  - Top level class and nested class changes
+  - Top level single class changes (ModifierChangeClass)
+  - Top level class and nested class changes (ModifierChangeClass.java)
   - Top level class, nested class, nested nested class changes.
   - Nested class changes and top is marked as changed.
   - Nested Nested class changes and top and nested is marked as changed. 
