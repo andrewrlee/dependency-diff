@@ -5,7 +5,9 @@
 ```java
 	@Test
 	public void checkClassChanges() {
+
 		check(differences)
+
 				.additionalClassesAre(
 						"com.test.class1.NewClass",
 						"com.test.class2.MovedClass",
