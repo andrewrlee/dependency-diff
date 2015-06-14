@@ -10,7 +10,8 @@ Or:
 ```java
     import static uk.co.optimisticpanda.jarcompare.diff.Differences.differenceBetween;
 	...
-	Differences differences = differenceBetween("test-0.0.1-SNAPSHOT.jar").and("test-0.0.2-SNAPSHOT.jar");
+	Differences differences = differenceBetween("test-0.0.1-SNAPSHOT.jar")
+									.and("test-0.0.2-SNAPSHOT.jar");
 ```
 
 ###Added/Removed Classes:
@@ -20,24 +21,24 @@ Or:
 	public void checkClassChanges() {
 
 		check(differences)
-
-				.additionalClassesAre(
-						"com.test.class1.NewClass",
-						"com.test.class2.MovedClass",
-						"com.test.class1.ClassWithNewNestedClass$NewNestedClass",
-						"com.test.class1.ClassWithAdditionalNestedClassesAtSameLevel$NewNestedClassA",
-						"com.test.class1.ClassWithAdditionalNestedClassesAtSameLevel$NewNestedClassB",
-						"com.test.class1.ClassWithNewNestedNestedClass$NewNestedClass$NewNestedNestedClass",
-						"com.test.class1.ClassWithTwoLevelsOfNestingAdded$NewNestedClass",
-						"com.test.class1.ClassWithTwoLevelsOfNestingAdded$NewNestedClass$NewNestedNestedClass")
-
-				.removedClassesAre(
-						"com.test.class1.MovedClass",
-						"com.test.class1.RemovedClass",
-						"com.test.class1.RemovedNestedClass$NewNestedClass",
-						"com.test.class1.RemovedNestedNestedClass$NewNestedClass$NewNestedNestedClass",
-						"com.test.class1.ClassWithTwoLevelsOfNestingRemoved$NewNestedClass",
-						"com.test.class1.ClassWithTwoLevelsOfNestingRemoved$NewNestedClass$NewNestedNestedClass");
+	
+			.additionalClassesAre(
+				"com.test.class1.NewClass",
+				"com.test.class2.MovedClass",
+				"com.test.class1.ClassWithNewNestedClass$NewNestedClass",
+				"com.test.class1.ClassWithAdditionalNestedClassesAtSameLevel$NewNestedClassA",
+				"com.test.class1.ClassWithAdditionalNestedClassesAtSameLevel$NewNestedClassB",
+				"com.test.class1.ClassWithNewNestedNestedClass$NewNestedClass$NewNestedNestedClass",
+				"com.test.class1.ClassWithTwoLevelsOfNestingAdded$NewNestedClass",
+				"com.test.class1.ClassWithTwoLevelsOfNestingAdded$NewNestedClass$NewNestedNestedClass")
+	
+			.removedClassesAre(
+				"com.test.class1.MovedClass",
+				"com.test.class1.RemovedClass",
+				"com.test.class1.RemovedNestedClass$NewNestedClass",
+				"com.test.class1.RemovedNestedNestedClass$NewNestedClass$NewNestedNestedClass",
+				"com.test.class1.ClassWithTwoLevelsOfNestingRemoved$NewNestedClass",
+				"com.test.class1.ClassWithTwoLevelsOfNestingRemoved$NewNestedClass$NewNestedNestedClass");
 	}
 ```
 
