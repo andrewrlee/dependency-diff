@@ -1,16 +1,16 @@
 package uk.co.optimisticpanda.jarcompare;
 
+import static uk.co.optimisticpanda.jarcompare.diff.Differences.differenceBetween;
 import static uk.co.optimisticpanda.jarcompare.test.util.TestAssertions.check;
-import static uk.co.optimisticpanda.jarcompare.test.util.TestUtils.differenceBetween;
+import static uk.co.optimisticpanda.jarcompare.test.util.TestUtils.getFile;
 
 import org.junit.Test;
 
 import uk.co.optimisticpanda.jarcompare.diff.Differences;
 
-
 public class ClassDifferencesTest {
 
-	Differences differences = differenceBetween("test-0.0.1-SNAPSHOT.jar").and("test-0.0.2-SNAPSHOT.jar");
+	Differences differences = differenceBetween(getFile("test-0.0.1-SNAPSHOT.jar")).and(getFile("test-0.0.2-SNAPSHOT.jar"));
 
 	@Test
 	public void checkClassAdditions() {

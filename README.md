@@ -1,5 +1,17 @@
 # dependency-diff
 
+###Calculate Differences
+```java
+    JarContents file1 = JarContents.load(getFile(filename1));
+	JarContents file2 = JarContents.load(getFile(filename2));
+	Differences file1.difference(file2);
+```
+Or 
+
+```java
+	Differences differences = differenceBetween("test-0.0.1-SNAPSHOT.jar").and("test-0.0.2-SNAPSHOT.jar");
+```
+
 ###Added/Removed Classes:
 
 ```java
