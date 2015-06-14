@@ -2,13 +2,14 @@
 
 ###Calculate Differences
 ```java
-    JarContents file1 = JarContents.load(getFile(filename1));
-	JarContents file2 = JarContents.load(getFile(filename2));
-	Differences file1.difference(file2);
+    JarContents testV1 = JarContents.load(new File("test-0.0.1-SNAPSHOT.jar"));
+	JarContents testV2 = JarContents.load(new File("test-0.0.2-SNAPSHOT.jar"));
+	Differences differences = testV1.difference(testV2);
 ```
-Or 
-
+Or: 
 ```java
+    import static uk.co.optimisticpanda.jarcompare.diff.Differences.differenceBetween;
+	...
 	Differences differences = differenceBetween("test-0.0.1-SNAPSHOT.jar").and("test-0.0.2-SNAPSHOT.jar");
 ```
 
