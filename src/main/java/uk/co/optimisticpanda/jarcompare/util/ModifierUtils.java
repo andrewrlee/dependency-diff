@@ -21,7 +21,10 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.function.IntPredicate;
 
+import javassist.CtClass;
 import javassist.Modifier;
+import javassist.bytecode.AccessFlag;
+import javassist.bytecode.ClassFile;
 
 public class ModifierUtils {
 
@@ -29,14 +32,20 @@ public class ModifierUtils {
 		PUBLIC, PRIVATE, PROTECTED, PACKAGE, STATIC, FINAL, SYNCHRONIZED, VOLATILE, VARARGS, TRANSIENT, NATIVE, INTERFACE, ABSTRACT, STRICT, ANNOTATION, ENUM;
 	}
 
-	public static SortedSet<Mod> getModifiers(int modifier) {
+	public static SortedSet<Mod> getModifiers(CtClass ctClass) {
 		TreeSet<Mod> results = new TreeSet<>();
-		Gatherer gatherer = createGatherer(results, modifier);
 
-		gatherer.addIf(Modifier::isPublic, PUBLIC);
-		gatherer.addIf(Modifier::isPrivate, PRIVATE);
-		gatherer.addIf(Modifier::isProtected, PROTECTED);
-		gatherer.addIf(Modifier::isPackage, PACKAGE);
+		ClassFile classFile = ctClass.getClassFile();
+		
+		int accessFlag = classFile.getInnerAccessFlags() == -1 ? classFile.getAccessFlags() : classFile.getInnerAccessFlags();
+	
+		Gatherer accessGatherer = createGatherer(results, accessFlag);
+		accessGatherer.addIf(AccessFlag::isPublic, PUBLIC);
+		accessGatherer.addIf(AccessFlag::isPrivate, PRIVATE);
+		accessGatherer.addIf(AccessFlag::isProtected, PROTECTED);
+		accessGatherer.addIf(AccessFlag::isPackage, PACKAGE);
+		
+		Gatherer gatherer = createGatherer(results, ctClass.getModifiers());
 		gatherer.addIf(Modifier::isStatic, STATIC);
 		gatherer.addIf(Modifier::isFinal, FINAL);
 		gatherer.addIf(Modifier::isSynchronized, SYNCHRONIZED);

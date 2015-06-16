@@ -21,7 +21,7 @@ public class ClassFile {
 
 	public ClassFile(CtClass file) {
 		this.name = file.getName();
-		this.modifiers = ModifierUtils.getModifiers(file.getModifiers());
+		this.modifiers = ModifierUtils.getModifiers(file);
 		try {
 			this.children = stream(file.getNestedClasses()).map(ClassFile::new).collect(toList());
 		} catch (NotFoundException e) {

@@ -124,12 +124,12 @@ public void checkClassModifierChanges() throws IOException {
  - Class Modifiers
   - Top level single class changes (ModifierChangeClass)
   - Top level class and nested class changes (ModifierChangeClass.java)
-  - Top level class, nested class, nested nested class changes.
+  - Top level class, nested class, nested nested class changes (NestedNestedModifierChangesClass)
   - Nested class changes and top is marked as changed.
   - Nested Nested class changes and top and nested is marked as changed. 
  
  - class to interface / interface to class
  - class to enum / enum to class
   
- 
- 
+ - Problems
+  - Cannot detect StrictFP

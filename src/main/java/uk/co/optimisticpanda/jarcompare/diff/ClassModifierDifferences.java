@@ -157,8 +157,7 @@ public class ClassModifierDifferences {
 
 		public Optional<ModifierDiff> getSubClassDifference(String subclassName) {
 				Path path = Path.newPath(subclassName);
-				return children.stream().filter(diff -> diff.key.equals(path))
-						.findFirst();
+				return children.stream().filter(diff ->  diff.key.equals(path)).findFirst();
 		}
 		
 		public boolean previouslyHad(Mod... mods) {

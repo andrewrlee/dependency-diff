@@ -83,7 +83,6 @@ public class TestAssertions extends Assertions {
 				.as("Expected %s to now contain %s", difference, Arrays.toString(mods)).isTrue();
 				return (THIS) this;
 			}
-
 		}  
 		
 		public static class TopLevelClassModifierVerifier extends ClassModifierVerifier<TopLevelClassModifierVerifier> {
@@ -98,8 +97,7 @@ public class TestAssertions extends Assertions {
 			
 			public SubClassModifierVerifier<TopLevelClassModifierVerifier> subClassModifiersFor(String subclassName) {
 				Optional<ModifierDiff> dif = difference.getSubClassDifference(subclassName);
-				assertThat(dif).isNotNull();
-				
+				assertThat(dif.isPresent()).as("Couldn't find %s", subclassName).isTrue();
 				return new SubClassModifierVerifier<TopLevelClassModifierVerifier>(this, dif.get());
 			}
 			
@@ -117,11 +115,11 @@ public class TestAssertions extends Assertions {
 				super(diff);
 				this.parent = parent;
 			}
-			public SubClassModifierVerifier<SubClassModifierVerifier<?>> subClassModifiersFor(String subclassName) {
+			
+			public SubClassModifierVerifier<SubClassModifierVerifier<PARENT>> subClassModifiersFor(String subclassName) {
 				Optional<ModifierDiff> dif = difference.getSubClassDifference(subclassName);
-				assertThat(dif).isNotNull();
-				
-				return new SubClassModifierVerifier<SubClassModifierVerifier<?>>(this, dif.get());
+				assertThat(dif.isPresent()).as("Couldn't find %s", subclassName).isTrue();
+				return new SubClassModifierVerifier<SubClassModifierVerifier<PARENT>>(this, dif.get());
 			}
 			
 			public PARENT end() {
