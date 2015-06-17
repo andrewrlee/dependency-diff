@@ -171,5 +171,12 @@ public class ClassModifierDifferences {
 
 		}
 
+		public SortedSet<Mod> getBefore() {
+			return before;
+		}
+		public SortedSet<Mod> getAfter() {
+			return after;
+		}
+
 	}
 }

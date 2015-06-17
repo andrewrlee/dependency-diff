@@ -23,6 +23,8 @@ public class ClassModifierDifferencesTest {
 
 	@Test
 	public void checkClassModifierChanges() throws IOException {
+
+		System.out.println(differences);
 		
 		check(differences)
 			
@@ -35,12 +37,28 @@ public class ClassModifierDifferencesTest {
 					.were(PUBLIC).now(PACKAGE, STATIC, FINAL).end()
 				.end()
 				
+			.classModifiersFor("com.test.classModifiers1.NestedNestedClassModifierChangesClass")
+				.were(PUBLIC).now(PUBLIC)
+				.subClassModifiersFor("com.test.classModifiers1.NestedNestedClassModifierChangesClass$NestedClass")
+					.were(PUBLIC).now(PUBLIC)
+					.subClassModifiersFor("com.test.classModifiers1.NestedNestedClassModifierChangesClass$NestedClass$NestedNestedClass")
+						.were(PUBLIC).now(PRIVATE, ABSTRACT).end()
+					.end()
+				.end()
+		
+			.classModifiersFor("com.test.classModifiers1.EnclosingNestedNestedClassModifierChangesClass")
+				.were(PUBLIC).now(PACKAGE, ABSTRACT)
+				.subClassModifiersFor("com.test.classModifiers1.EnclosingNestedNestedClassModifierChangesClass$NestedClass")
+					.were(PUBLIC).now(PACKAGE, ABSTRACT)
+					.subClassModifiersFor("com.test.classModifiers1.EnclosingNestedNestedClassModifierChangesClass$NestedClass$NestedNestedClass")
+						.were(PUBLIC).now(PACKAGE, ABSTRACT).end()
+					.end()
+				.end()
+				
 			.classModifiersFor("com.test.classModifiers1.NestedNestedModifierChangesClass")
-				.were(PUBLIC).now(PUBLIC, ABSTRACT)
+				.were(PUBLIC).now(PUBLIC)
 				.subClassModifiersFor("com.test.classModifiers1.NestedNestedModifierChangesClass$NestedClass")
-					.were(PUBLIC).now(PACKAGE, STATIC)
-					.subClassModifiersFor("com.test.classModifiers1.NestedNestedModifierChangesClass$NestedClass$NestedNestedClass")
-						.were(PRIVATE).now(PROTECTED, ABSTRACT).end()
-					.end();
+					.were(PUBLIC).now(PRIVATE, ABSTRACT).end()
+			.end();
 	}
 }

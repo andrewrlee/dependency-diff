@@ -73,14 +73,14 @@ public class TestAssertions extends Assertions {
 			@SuppressWarnings("unchecked")
 			public THIS were(Mod... mods) {
 				assertThat(difference.previouslyHad(mods))
-				.as("Expected %s to previously contain %s", difference, Arrays.toString(mods)).isTrue();
+				.as("Expected %s to previously contain %s", difference.getBefore(), Arrays.toString(mods)).isTrue();
 				return (THIS) this;
 			}
 			
 			@SuppressWarnings("unchecked")
 			public THIS now(Mod... mods) {
 				assertThat(difference.nowHas(mods))
-				.as("Expected %s to now contain %s", difference, Arrays.toString(mods)).isTrue();
+				.as("Expected %s to now contain %s", difference.getAfter(), Arrays.toString(mods)).isTrue();
 				return (THIS) this;
 			}
 		}  

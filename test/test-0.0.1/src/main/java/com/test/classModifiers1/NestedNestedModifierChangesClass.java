@@ -4,10 +4,6 @@ public class NestedNestedModifierChangesClass {
 
 	public class NestedClass {
 
-		private class NestedNestedClass {
-
-		}
-		
 	}
 	
 	

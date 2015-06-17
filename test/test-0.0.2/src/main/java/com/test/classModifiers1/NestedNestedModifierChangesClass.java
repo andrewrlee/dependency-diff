@@ -1,13 +1,9 @@
 package com.test.classModifiers1;
 
-public abstract class NestedNestedModifierChangesClass {
+public class NestedNestedModifierChangesClass {
 
-	static class NestedClass {
+	private abstract class NestedClass {
 
-		protected abstract class NestedNestedClass {
-
-		}
-		
 	}
 	
 	

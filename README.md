@@ -69,12 +69,13 @@ public void checkClassModifierChanges() throws IOException {
  - Classes
    - [X] New Classes
    - [X] Deleted Classes
-   - [ ] Class Modifier changed.
+   - [X] Class Modifier changed.
    - [ ] Child members changed.  
-
+   - [ ] Change types class -> interface -> annotation  
+   
  - Nested Classes
-   - [ ] New Classes
-   - [ ] Deleted Classes
+   - [X] New Classes
+   - [X] Deleted Classes
    - [ ] Altered Classes (Child members altered or class modifiers changed)  
  
  - Constructors
@@ -125,8 +126,8 @@ public void checkClassModifierChanges() throws IOException {
   - Top level single class changes (ModifierChangeClass)
   - Top level class and nested class changes (ModifierChangeClass.java)
   - Top level class, nested class, nested nested class changes (NestedNestedModifierChangesClass)
-  - Nested class changes and top is marked as changed.
-  - Nested Nested class changes and top and nested is marked as changed. 
+  - Nested class changes and top isn't (NestedNestedModifierChangesClass).
+  - Nested Nested class changes and top isn't. (NestedNestedClassModifierChangesClass)
  
  - class to interface / interface to class
  - class to enum / enum to class
