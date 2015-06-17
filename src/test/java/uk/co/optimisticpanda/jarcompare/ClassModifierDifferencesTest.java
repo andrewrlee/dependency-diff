@@ -7,7 +7,6 @@ import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.ABSTRACT;
 import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.FINAL;
 import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PACKAGE;
 import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PRIVATE;
-import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PROTECTED;
 import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.PUBLIC;
 import static uk.co.optimisticpanda.jarcompare.util.ModifierUtils.Mod.STATIC;
 
@@ -24,8 +23,6 @@ public class ClassModifierDifferencesTest {
 	@Test
 	public void checkClassModifierChanges() throws IOException {
 
-		System.out.println(differences);
-		
 		check(differences)
 			
 			.classModifiersFor("com.test.classModifiers1.ModifierChangeClass")
